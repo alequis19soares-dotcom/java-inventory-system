@@ -19,18 +19,30 @@ public class Main {
         // Aqui o programa faz uma pausa para o usuário digitar
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter product name: ");
-        String newName = scanner.nextLine();
+        int option = 1;
 
-        System.out.println("Enter price: ");
-        double newPrice = scanner.nextDouble();
+        while (option != 0) {
+            System.out.println("--- Invetory Menu ---");
+            System.out.println("1 - Add Product");
+            System.out.println("0 - Exit and Show List");
+            System.out.println("Choose an option: ");
+            option = scanner.nextInt();
+            scanner.nextLine(); // Dica: Limpa o teclado para o próximo texto
 
-        System.out.println("Enter quantity: ");
-        int newQty = scanner.nextInt();
+            if (option ==1) {
+                System.out.print("Entre product name: ");
+                String newName = scanner.nextLine();
 
-        // Criando o produto com o que o usário digitou
-        Product p3 = new Product(newName, newPrice, newQty);
-        inventory.add(p3);
+                System.out.print("Entre price: ");
+                double newPrice = scanner.nextDouble();
+
+                System.out.print("Entre qunatity: ");
+                int newQty = scanner.nextInt();
+
+                inventory.add(new Product(newName, newPrice, newQty));
+
+            }
+        }
 
         // 4. Listando os produtos (O Loop)
         System.out.println("--- Store Inventory ---");
