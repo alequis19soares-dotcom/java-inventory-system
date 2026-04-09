@@ -9,7 +9,7 @@ public class Main {
         ArrayList<Product> inventory = new ArrayList<>();
 
         // 2. Criando produtos (Instanciando)
-        Product p1 = new Product ("Smartphone", 1500.0, 10);
+        Product p1 = new Product("Smartphone", 1500.0, 10);
         Product p2 = new Product("Laptop", 3500.0, 5);
 
         // 3. Adicionando ao estoque
@@ -24,12 +24,13 @@ public class Main {
         while (option != 0) {
             System.out.println("--- Invetory Menu ---");
             System.out.println("1 - Add Product");
+            System.out.println("2 - Search Product");
             System.out.println("0 - Exit and Show List");
             System.out.println("Choose an option: ");
             option = scanner.nextInt();
             scanner.nextLine(); // Dica: Limpa o teclado para o próximo texto
 
-            if (option ==1) {
+            if (option == 1) {
                 System.out.print("Entre product name: ");
                 String newName = scanner.nextLine();
 
@@ -41,18 +42,34 @@ public class Main {
 
                 inventory.add(new Product(newName, newPrice, newQty));
 
-            }
-        }
+            } else if (option == 2) {
+                System.out.print("Enter product name to search: ");
+                String searchName = scanner.nextLine();
+                boolean found = false;
 
-        // 4. Listando os produtos (O Loop)
+                for (Product p : inventory) {
+                    if (p.name.equalsIgnoreCase(searchName)) {
+                        System.out.println("Product Found: " + p.name + " | Price: $" + p.price + " | Qty: " + p.quantity);
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    System.out.println("Product not found in inventory");
+                }
+            } // 1. Fecha o else if (Option 2)
+        } // 2. Fecha o while (Menu)
+
+        // 4. Listando os produtos (Isso fica FORA do while)
         System.out.println("--- Store Inventory ---");
-        for (Product p: inventory) {
-            System.out.println("Item: " + p.name + " | Price: $" +  p.price + "| Qty: " + p.quantity);
+        for (Product p : inventory) {
+            System.out.println("Item: " + p.name + " | Price: $" + p.price + " | Qty: " + p.quantity);
         }
 
+    } // 3. Fecha o método main
+} // 4. Fecha a classe Main
 
-    }
-}
+
 ///*        // numeros inteiros = 100, 23456, 255, 120, 1, 90989797979094
 //        byte => 8 bits => -128 a 127
 //        short => 16 bits => -32.768 a 32.767
